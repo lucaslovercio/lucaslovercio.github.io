@@ -94,6 +94,7 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.2; margin: 0; }
   font-size: .95rem;
 }
 .toc a:hover { color: var(--accent); text-decoration: none; }
+.toc a[aria-current="page"] { color: var(--accent); box-shadow: inset 0 -2px 0 var(--accent); }
 
 /* ---------- Sections ---------- */
 main section { padding: 44px 0 8px; scroll-margin-top: 48px; }
@@ -209,4 +210,18 @@ main section { padding: 44px 0 8px; scroll-margin-top: 48px; }
 }
 @media (prefers-color-scheme: dark) {
   .construction { background: #3a2f12; color: #f5d98b; border-color: #5c4a1a; }
+}
+
+/* ---------- Featured research (Home) ---------- */
+#featured .pub-list { margin-top: 14px; }
+.pub-featured {
+  background: var(--surface); border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 12px;
+}
+.pub-featured .pub-title { font-size: 1.05rem; }
+.pub-highlight { margin: 4px 0 6px; color: var(--text); font-size: .95rem; }
+.pub-star {
+  font-size: .78rem; margin-left: 6px; padding: 1px 8px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--accent-strong); white-space: nowrap;
 }

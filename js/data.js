@@ -165,7 +165,9 @@ window.SITE = {
      type: "journal" | "tutorial" | "conference"
      doi:  without the https://doi.org/ prefix. If empty, the title
            links to a Google Scholar search instead.
-     Authors: use "Lo Vercio" so your name is highlighted.            */
+     Authors: use "Lo Vercio" so your name is highlighted.
+     featured:  true → also listed under "Featured research" on Home
+     highlight: optional one-liner shown with featured papers         */
   publications: [
     { key: "jorspine2025", type: "journal", year: 2025,
       authors: "Bader TJ, Dhiman M, Lo Vercio L, Bouchard J, Nicholls F, et al.",
@@ -175,7 +177,9 @@ window.SITE = {
     { key: "dev2025", type: "journal", year: 2025,
       authors: "Lo Vercio LD‡, Green RM‡, Dauter A, Barretto EC, et al., Hallgrímsson B",
       title: "Quantifying the relationship between cell proliferation and morphology during development of the face",
-      venue: "Development, 152(7)", doi: "10.1242/dev.204511" },
+      venue: "Development, 152(7)", doi: "10.1242/dev.204511",
+      featured: true,
+      highlight: "A light-sheet imaging and analysis pipeline that relates the 3D distribution of cell proliferation to facial shape across mouse development." },
 
     { key: "natcomms2023", type: "journal", year: 2023,
       authors: "Radford BN, Zhao X, Glazer T, et al., Lo Vercio LD, et al., Hemberger M",
@@ -185,7 +189,9 @@ window.SITE = {
     { key: "ieee2022", type: "journal", year: 2022,
       authors: "Lo Vercio LD, Green RM, Robertson S, et al., Hallgrímsson B, Forkert ND",
       title: "Segmentation of tissues and proliferating cells in light-sheet microscopy images of mouse embryos using convolutional neural networks",
-      venue: "IEEE Access, 10, 105084–105100", doi: "10.1109/access.2022.3210542" },
+      venue: "IEEE Access, 10, 105084–105100", doi: "10.1109/access.2022.3210542",
+      featured: true,
+      highlight: "Convolutional neural networks that segment tissues, nuclei and proliferating cells in whole mouse embryos imaged with light-sheet microscopy." },
 
     { key: "scidata2022", type: "journal", year: 2022,
       authors: "Devine J, Vidal-García M, Liu W, Neves A, Lo Vercio LD, et al.",
@@ -210,7 +216,9 @@ window.SITE = {
     { key: "cmpb2019", type: "journal", year: 2019,
       authors: "Lo Vercio L, del Fresno M, Larrabide I",
       title: "Lumen-intima and media-adventitia segmentation in IVUS images using supervised classifications of arterial layers and morphological structures",
-      venue: "Computer Methods and Programs in Biomedicine, 177, 113–121", doi: "10.1016/j.cmpb.2019.05.021" },
+      venue: "Computer Methods and Programs in Biomedicine, 177, 113–121", doi: "10.1016/j.cmpb.2019.05.021",
+      featured: true,
+      highlight: "Fully automatic vessel-wall segmentation in intravascular ultrasound, combining supervised classification of arterial layers with deformable contours." },
 
     { key: "umb2018", type: "journal", year: 2018,
       authors: "Manterola HL, Lo Vercio L, Díaz A, del Fresno M, Larrabide I",
@@ -230,7 +238,9 @@ window.SITE = {
     { key: "jne2020", type: "tutorial", year: 2020,
       authors: "Lo Vercio L, Amador K, Bannister JJ, et al., Forkert ND",
       title: "Supervised machine learning tools: a tutorial for clinicians",
-      venue: "Journal of Neural Engineering, 17(6)", doi: "10.1088/1741-2552/abbff2" },
+      venue: "Journal of Neural Engineering, 17(6)", doi: "10.1088/1741-2552/abbff2",
+      featured: true,
+      highlight: "An accessible introduction to supervised machine learning and deep learning for clinicians, with practical advice on designing a model for a medical problem." },
 
     { key: "cai2020", type: "conference", year: 2020,
       authors: "Bruscantini C, Lo Vercio L, Rinaldi P",

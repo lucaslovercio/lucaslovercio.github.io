@@ -26,17 +26,19 @@
 
   /* ---- header & about ---- */
   const P = S.profile;
-  document.title = P.name;
+  /* page title: keep "<page> · " prefix if the page sets data-page-title */
+  const pageTitle = document.body.dataset.pageTitle;
+  document.title = pageTitle ? `${pageTitle} · ${P.name}` : P.name;
   $("name").textContent = P.name;
   $("role").textContent = P.role;
   $("affiliation").textContent = P.affiliation;
   if (P.photo) { $("photo").src = P.photo; $("photo").alt = P.name; $("photo").hidden = false; }
   $("links").innerHTML = P.links.map((l) =>
     `<a href="${esc(l.url)}" target="_blank" rel="noopener">${ICONS[l.icon] || ""}${esc(l.label)}</a>`).join("");
-  $("bio").innerHTML = P.bio.map((p) => `<p>${esc(p)}</p>`).join("");
-  $("education").innerHTML = P.education.map((e) => `<li>${esc(e)}</li>`).join("");
+  if ($("bio")) $("bio").innerHTML = P.bio.map((p) => `<p>${esc(p)}</p>`).join("");
+  if ($("education")) $("education").innerHTML = P.education.map((e) => `<li>${esc(e)}</li>`).join("");
   const rg = P.links.find((l) => l.icon === "researchgate");
-  if (rg) $("rg-link").href = rg.url;
+  if (rg && $("rg-link")) $("rg-link").href = rg.url;
   $("year").textContent = new Date().getFullYear();
   $("updated").textContent = P.updated || "";
   $("construction").hidden = !P.underConstruction;
@@ -96,39 +98,68 @@
       </div>`;
   }
 
-  $("research-areas").innerHTML = S.areas.filter((a) => a.group === "research").map(areaBlock).join("");
-  $("teaching-areas").innerHTML = S.areas.filter((a) => a.group === "teaching").map(areaBlock).join("");
+  /* ================= HOME ================= */
+  if ($("research-areas")) {
+    $("research-areas").innerHTML = S.areas.filter((a) => a.group === "research").map(areaBlock).join("");
+    $("teaching-areas").innerHTML = S.areas.filter((a) => a.group === "teaching").map(areaBlock).join("");
 
-  /* ---- technique filter (research areas only) ---- */
-  const researchCards = [...document.querySelectorAll("#research .card")];
-  const counts = {};
-  researchCards.forEach((c) => c.dataset.tags.split("|").filter(Boolean).forEach((t) => (counts[t] = (counts[t] || 0) + 1)));
-  const tags = Object.keys(counts).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b));
-  let active = null;
-  $("filters").innerHTML = ['<button class="chip" aria-pressed="true" data-tag="">All</button>']
-    .concat(tags.map((t) => `<button class="chip" aria-pressed="false" data-tag="${esc(t)}">${esc(t)}</button>`)).join("");
-  $("filters").addEventListener("click", (e) => {
-    const b = e.target.closest(".chip"); if (!b) return;
-    active = b.dataset.tag || null;
-    $("filters").querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", String(c === b)));
-    researchCards.forEach((c) => (c.hidden = active && !c.dataset.tags.split("|").includes(active)));
-    document.querySelectorAll("#research .area").forEach((a) => (a.hidden = !a.querySelector(".card:not([hidden])")));
-  });
+    /* ---- technique filter (research areas only) ---- */
+    const researchCards = [...document.querySelectorAll("#research .card")];
+    const counts = {};
+    researchCards.forEach((c) => c.dataset.tags.split("|").filter(Boolean).forEach((t) => (counts[t] = (counts[t] || 0) + 1)));
+    const tags = Object.keys(counts).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b));
+    let active = null;
+    $("filters").innerHTML = ['<button class="chip" aria-pressed="true" data-tag="">All</button>']
+      .concat(tags.map((t) => `<button class="chip" aria-pressed="false" data-tag="${esc(t)}">${esc(t)}</button>`)).join("");
+    $("filters").addEventListener("click", (e) => {
+      const b = e.target.closest(".chip"); if (!b) return;
+      active = b.dataset.tag || null;
+      $("filters").querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", String(c === b)));
+      researchCards.forEach((c) => (c.hidden = active && !c.dataset.tags.split("|").includes(active)));
+      document.querySelectorAll("#research .area").forEach((a) => (a.hidden = !a.querySelector(".card:not([hidden])")));
+    });
+  }
 
   /* ---- publications ---- */
-  const GROUPS = [["journal", "Journal articles"], ["tutorial", "Tutorials & reviews"], ["conference", "Selected conference papers"]];
   const hl = (s) => esc(s).replace(/(Lo Vercio\s+[A-Z]{1,2}‡?)/g, "<strong>$1</strong>");
-  $("pubs").innerHTML = GROUPS.map(([type, label]) => {
-    const list = S.publications.filter((p) => p.type === type).sort((a, b) => b.year - a.year);
-    if (!list.length) return "";
-    return `<div class="pub-group"><h3>${label}</h3><ul class="pub-list">${list.map((p) => `
-      <li class="pub">
+  const codeLinks = (p) => (codeFor[p.key] || [])
+    .map((r) => `<a class="pub-code" href="${esc(r.url)}" target="_blank" rel="noopener">code</a>`).join("");
+
+  function pubItem(p, opts = {}) {
+    return `
+      <li class="pub${opts.featured ? " pub-featured" : ""}">
         <span class="pub-year">${p.year}</span>
         <div>
           <a class="pub-title" href="${pubUrl(p)}" target="_blank" rel="noopener">${esc(p.title)}</a>
-          ${(codeFor[p.key] || []).map((r) => `<a class="pub-code" href="${esc(r.url)}" target="_blank" rel="noopener">code</a>`).join("")}
-          <div class="pub-meta">${hl(p.authors)}. <em>${esc(p.venue)}</em></div>
+          ${!opts.featured && p.featured ? '<span class="pub-star" title="Featured">★ featured</span>' : ""}
+          ${codeLinks(p)}
+          ${opts.featured && p.highlight ? `<p class="pub-highlight">${esc(p.highlight)}</p>` : ""}
+          <div class="pub-meta">${hl(p.authors.replace(/\.$/, ""))}. <em>${esc(p.venue)}</em></div>
         </div>
-      </li>`).join("")}</ul></div>`;
-  }).join("");
+      </li>`;
+  }
+
+  /* Featured research (Home) */
+  if ($("featured")) {
+    const list = S.publications.filter((p) => p.featured).sort((a, b) => b.year - a.year);
+    $("featured").innerHTML = `<ul class="pub-list">${list.map((p) => pubItem(p, { featured: true })).join("")}</ul>`;
+  }
+
+  /* Full list (Publications page) */
+  if ($("pubs")) {
+    const GROUPS = [["journal", "Journal articles"], ["tutorial", "Tutorials & reviews"], ["conference", "Selected conference papers"]];
+    $("pubs").innerHTML = GROUPS.map(([type, label]) => {
+      const list = S.publications.filter((p) => p.type === type).sort((a, b) => b.year - a.year);
+      if (!list.length) return "";
+      return `<div class="pub-group"><h3>${label}</h3><ul class="pub-list">${list.map((p) => pubItem(p)).join("")}</ul></div>`;
+    }).join("");
+  }
+
+  /* mark current page in the nav */
+  /* works for "/", "/index.html", "/publications" and "/publications.html" */
+  const page = (s) => (s.split("/").pop() || "index").replace(/\.html$/, "");
+  const here = page(location.pathname);
+  document.querySelectorAll(".toc a").forEach((a) => {
+    if (page(a.getAttribute("href")) === here) a.setAttribute("aria-current", "page");
+  });
 })();
