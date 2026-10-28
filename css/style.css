@@ -189,6 +189,7 @@ main section { padding: 44px 0 8px; scroll-margin-top: 48px; }
   font-size: .78rem; margin-left: 6px; padding: 1px 8px; border-radius: 999px;
   border: 1px solid var(--line); white-space: nowrap;
 }
+.teach { grid-template-columns: 96px 1fr; }
 
 .footer { color: var(--muted); font-size: .9rem; padding-top: 40px; padding-bottom: 40px; }
 

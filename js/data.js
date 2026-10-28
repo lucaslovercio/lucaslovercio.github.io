@@ -157,6 +157,17 @@ window.SITE = {
       papers: [],
       thumb: "assets/thumbs/qsw_4.png",
       note: "University of Calgary, May 2026"
+    },
+    {
+      name: "SpinalCordAnalysis",
+      url: "https://github.com/lucaslovercio/SpinalCordAnalysis",
+      area: "microscopy",
+      description: "Spinal cord analysis: thickness and gene expression",
+      language: "MATLAB",
+      tags: ["Segmentation", "Thickness measurement"],
+      papers: [],
+      thumb: "",
+      note: "Based on cimtool"
     }
   ],
 
@@ -169,6 +180,10 @@ window.SITE = {
      featured:  true → also listed under "Featured research" on Home
      highlight: optional one-liner shown with featured papers         */
   publications: [
+    { key: "dauter", type: "journal", year: 2026,
+      authors: "Dauter A, Malhi SK, Lo Vercio LD, et al., Hallgrímsson B",
+      title: "Three-dimensional cellular dynamics and mandibular morphogenesis",
+      venue: "Frontiers in Cell and Developmental Biology, 14", doi: "10.3389/fcell.2026.1823297" },
     { key: "jorspine2025", type: "journal", year: 2025,
       authors: "Bader TJ, Dhiman M, Lo Vercio L, Bouchard J, Nicholls F, et al.",
       title: "Reduced shear modulus and altered lamellar morphology of the outer annulus fibrosus in painful intervertebral disc degeneration compared with tissue from non-surgical controls",
@@ -206,7 +221,7 @@ window.SITE = {
     { key: "frontiers2021", type: "journal", year: 2021,
       authors: "Marchini M‡, Hu D‡, Lo Vercio L, Young NM, Forkert ND, Hallgrímsson B, Marcucio R",
       title: "Wnt signaling drives correlated changes in facial morphology and brain shape",
-      venue: "Frontiers in Cell and Developmental Biology", doi: "10.3389/fcell.2021.644099" },
+      venue: "Frontiers in Cell and Developmental Biology, 9", doi: "10.3389/fcell.2021.644099" },
 
     { key: "evolbio2020", type: "journal", year: 2020,
       authors: "Devine J, Aponte JD, Katz DC, Liu W, Lo Vercio LD, et al.",
@@ -261,5 +276,53 @@ window.SITE = {
       authors: "D'Amato JP, Lo Vercio L, Rubi P, Fernandez Vera E, Barbuzza R, del Fresno M, Larrabide I",
       title: "Efficient scatter model for simulation of ultrasound images from computed tomography data",
       venue: "Proc. SPIE 9681, SIPAIM", doi: "10.1117/12.2205937" }
+  ],
+
+  teaching_courses: [
+    {
+      key: "qsw2026", role: "Guest lecturer", year: "2026",
+      title: "Cellpose Lab", topics: "Cellpose, observer variability", university: "UCalgary"
+    },
+    {
+      key: "mdsc68911", role: "Guest lecturer", year: "2023,2024",
+      title: "Medical Imaging Applications", topics: "Image registration, Machine Learning", university: "UCalgary"
+    },
+    {
+      key: "improcess", role: "Instructor", year: "2022",
+      title: "Workshop: Introduction to Image Processing using Open-Source Software",
+      topics: "Filtering. Segmentation. 3DSlicer, Paraview, ITK, Python", university: "UCalgary"
+    },
+    {
+      key: "custodios", role: "Instructor", year: "2018",
+      title: "Technological Applications for Conservation",
+      topics: "GPS, Geographic Information Systems, Image Processing", university: "UNCPBA"
+    },
+    {
+      key: "tim", role: "Teaching Assistant", year: "2014, 2015, 2017",
+      title: "Medical Imaging workshop",
+      topics: "Filtering, segmentation, quantification and registration of medical images", university: "UNCPBA"
+    },
+    {
+      key: "metodologias", role: "Teaching Assistant", year: "2009-2018",
+      title: "Software Development Methodologies I",
+      topics: "UML, UP, Agile software development. IBM Professional Qualification RT011", university: "UNCPBA"
+    },
+    {
+      key: "tio", role: "Teaching Assistant", year: "2016-2018",
+      title: "Information Technologies for Organizations",
+      topics: "Fundamentals of organizations, Business requirements, Git, CMMI", university: "UNCPBA"
+    },
+    {
+      key: "compiladores", role: "Teaching Assistant", year: "2011-2019",
+      title: "Design of Compilers I",
+      topics: "Symbols tables, lexical and syntactic analysis, YACC, Assembly language", university: "UNCPBA"
+    },
+    {
+      key: "estructuras-tupar", role: "Teaching Assistant", year: "2011",
+      title: "Data Storage Structures",
+      topics: "Data modeling (Entity-Relationship Diagrams, Normal Forms, Business Requirements) and data structures in secondary storage",
+      university: "UNCPBA"
+    },
   ]
+
 };

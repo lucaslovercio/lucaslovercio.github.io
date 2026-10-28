@@ -155,6 +155,28 @@
     }).join("");
   }
 
+  /* ---- teaching (Teaching page) ---- */
+  function teachItem(c) {
+    return `
+      <li class="pub teach">
+        <span class="pub-year">${esc(c.year).replace(/,\s*/g, ", ")}</span>
+        <div>
+          <span class="pub-title">${esc(c.title)}</span>
+          <span class="pub-code">${esc(c.role)}</span>
+          ${c.topics ? `<div class="pub-meta">${esc(c.topics)}</div>` : ""}
+        </div>
+      </li>`;
+  }
+
+  /* grouped by university, in the order they appear in data.js */
+  if ($("teach")) {
+    const C = S.teaching_courses || [];
+    const unis = [...new Set(C.map((c) => c.university))];
+    $("teach").innerHTML = unis.map((u) =>
+      `<div class="pub-group"><h3>${esc(u)}</h3><ul class="pub-list">${C.filter((c) => c.university === u).map(teachItem).join("")}</ul></div>`
+    ).join("");
+  }
+
   /* mark current page in the nav */
   /* works for "/", "/index.html", "/publications" and "/publications.html" */
   const page = (s) => (s.split("/").pop() || "index").replace(/\.html$/, "");
