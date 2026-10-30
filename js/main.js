@@ -147,7 +147,7 @@
 
   /* Full list (Publications page) */
   if ($("pubs")) {
-    const GROUPS = [["journal", "Journal articles"], ["tutorial", "Tutorials & reviews"], ["conference", "Selected conference papers"]];
+    const GROUPS = [["journal", "Journal articles"], ["tutorial", "Tutorials & reviews"], ["conference", "Selected conference papers"], ["preprint", "Preprints"]];
     $("pubs").innerHTML = GROUPS.map(([type, label]) => {
       const list = S.publications.filter((p) => p.type === type).sort((a, b) => b.year - a.year);
       if (!list.length) return "";

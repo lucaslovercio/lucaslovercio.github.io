@@ -39,19 +39,19 @@ window.SITE = {
       id: "microscopy",
       group: "research",
       title: "Microscopy & developmental biology",
-      blurb: "Deep-learning segmentation, registration and quantification of light-sheet and fluorescence microscopy, and the data infrastructure behind it. University of Calgary."
+      blurb: "Deep-learning segmentation, registration and quantification of fluorescence microscopy, and the data infrastructure behind it. University of Calgary."
     },
     {
       id: "ultrasound",
       group: "research",
       title: "Cardiovascular ultrasound",
-      blurb: "Segmentation and measurement of the vessel wall in intravascular (IVUS) and carotid ultrasound. My Ph.D. work at PLADEMA (UNCPBA–CONICET, Argentina)."
+      blurb: "Segmentation and measurement of the vessel wall in vascular ultrasound. PLADEMA (UNCPBA–CONICET)."
     },
     {
       id: "remote",
       group: "research",
       title: "Remote sensing & satellite imagery",
-      blurb: "Machine learning on Landsat and radar data for environmental monitoring."
+      blurb: "Machine learning on satellite imagery."
     },
     {
       id: "teaching",
@@ -71,10 +71,10 @@ window.SITE = {
      note:   optional one-line remark                                 */
   repos: [
     {
-      name: "IVUSprocessing",
+      name: "IVUS Processing",
       url: "https://github.com/lucaslovercio/IVUSprocessing",
       area: "ultrasound",
-      description: "Classification and segmentation of the vessel wall in intravascular ultrasound: feature selection, SVM layer classification, Random Forest detection of morphological structures and lumen / media-adventitia contours.",
+      description: "Segmentation of the vessel wall in intravascular ultrasound (IVUS).",
       language: "MATLAB",
       tags: ["SVM", "Random Forest", "Feature selection", "Imbalanced data", "Segmentation"],
       papers: ["ijcars2016", "spie2017rf", "cmpb2019"],
@@ -93,10 +93,10 @@ window.SITE = {
       note: "Co-developed with H. L. Manterola"
     },
     {
-      name: "LSMprocessing",
+      name: "LSFM Processing",
       url: "https://github.com/lucaslovercio/LSMprocessing",
       area: "microscopy",
-      description: "Light-sheet microscopy pipeline for mouse embryos: CNN segmentation of tissues, nuclei and proliferating cells, groupwise registration and proliferation atlases by age.",
+      description: "Light-sheet microscopy pipeline for mouse embryos: CNN-based segmentation of tissues, nuclei and proliferating cells, groupwise registration and proliferation atlases by age.",
       language: "Python",
       tags: ["CNNs", "U-Net", "Segmentation", "Image registration"],
       papers: ["ieee2022", "dev2025"],
@@ -104,21 +104,21 @@ window.SITE = {
       note: ""
     },
     {
-      name: "ACHRI_Workshop_Cellpose",
+      name: "Cellpose Workshop (ACHRI)",
       url: "https://github.com/lucaslovercio/ACHRI_Workshop_Cellpose",
       area: "microscopy",
-      description: "Scripts to segment and quantify cells with Cellpose (area, perimeter, eccentricity, compactness) and to re-train models, selecting the best one by Aggregated Jaccard Index.",
+      description: "Scripts to segment and quantify cells with Cellpose. Tailored projects for ACHRI labs.",
       language: "Python",
-      tags: ["Cellpose", "CNNs", "Segmentation", "Quantification"],
+      tags: ["Cellpose", "Segmentation", "Quantification"],
       papers: [],
       thumb: "assets/thumbs/cellpose_workshop.png",
       note: ""
     },
     {
-      name: "BHlab-Metadata-DB",
+      name: "Imaging Metadata DB",
       url: "https://github.com/lucaslovercio/BHlab-Metadata-DB",
       area: "microscopy",
-      description: "Relational database that keeps the metadata of the imaging scans of the Hallgrímsson lab.",
+      description: "Relational database modeling the imaging scans of the Hallgrímsson lab.",
       language: "SQL",
       tags: ["Databases", "Data management"],
       papers: [],
@@ -126,7 +126,7 @@ window.SITE = {
       note: ""
     },
     {
-      name: "lumberjack_qgis_plugin",
+      name: "Lumberjack: QGIS Plugin",
       url: "https://github.com/carobrus/lumberjack_qgis_plugin",
       area: "remote",
       description: "QGIS plugin that corrects radar digital elevation models by detecting trees in Landsat imagery with machine learning.",
@@ -137,10 +137,10 @@ window.SITE = {
       note: "By C. Bruscantini"
     },
     {
-      name: "WorkshopImageProcessing",
+      name: "Workshop: Image Processing using Open-Source Software",
       url: "https://github.com/lucaslovercio/WorkshopImageProcessing",
       area: "teaching",
-      description: "Introduction to automatic image processing for McCaig Institute trainees, with graphical tools and programming libraries: filtering and segmentation with 3D Slicer, ParaView, ITK and Python.",
+      description: "Introduction to automatic image processing for McCaig Institute trainees, with graphical tools and programming libraries.",
       language: "Python",
       tags: ["Segmentation", "3D Slicer", "ITK"],
       papers: [],
@@ -148,10 +148,10 @@ window.SITE = {
       note: "University of Calgary, 2022"
     },
     {
-      name: "QSW2026-CellposeLab",
+      name: "QSW2026: Cellpose Lab",
       url: "https://github.com/lucaslovercio/QSW2026-CellposeLab",
       area: "teaching",
-      description: "Cellpose lab for QSW 2026: from a pre-trained nuclei model to re-trained models on fluorescence images, ready to run in Google Colab.",
+      description: "Hands-on Cellpose lab at the Quantitative Superresolution Microscopy Workshop (QSW) 2026.",
       language: "Python",
       tags: ["Cellpose", "Segmentation"],
       papers: [],
@@ -159,13 +159,13 @@ window.SITE = {
       note: "University of Calgary, May 2026"
     },
     {
-      name: "SpinalCordAnalysis",
+      name: "Spinal Cord Analysis",
       url: "https://github.com/lucaslovercio/SpinalCordAnalysis",
       area: "microscopy",
-      description: "Spinal cord analysis: thickness and gene expression",
+      description: "Semi-automatic tool for spinal cord analysis: thickness and gene expression.",
       language: "MATLAB",
       tags: ["Segmentation", "Thickness measurement"],
-      papers: [],
+      papers: ["aarti2026"],
       thumb: "",
       note: "Based on cimtool"
     }
@@ -173,13 +173,17 @@ window.SITE = {
 
   /* -------------------------------------------------------------- */
   /* Publications.
-     type: "journal" | "tutorial" | "conference"
+     type: "journal" | "tutorial" | "conference" | "preprint"
      doi:  without the https://doi.org/ prefix. If empty, the title
            links to a Google Scholar search instead.
      Authors: use "Lo Vercio" so your name is highlighted.
      featured:  true → also listed under "Featured research" on Home
      highlight: optional one-liner shown with featured papers         */
   publications: [
+    { key: "aarti2026", type: "preprint", year: 2026,
+      authors: "Kejriwal A and Kim M and Lo Vercio, L and Huang P",
+      title: "Context-dependent Foxa2 activity maintains floor plate fate and tunes Sonic hedgehog signaling to regulate neural progenitor differentiation",
+      venue: "bioRxiv", doi: "10.64898/2026.06.21.733624" },
     { key: "dauter", type: "journal", year: 2026,
       authors: "Dauter A, Malhi SK, Lo Vercio LD, et al., Hallgrímsson B",
       title: "Three-dimensional cellular dynamics and mandibular morphogenesis",
@@ -259,7 +263,7 @@ window.SITE = {
 
     { key: "cai2020", type: "conference", year: 2020,
       authors: "Bruscantini C, Lo Vercio L, Rinaldi P",
-      title: "Correction of radar digital elevation models using Landsat imagery through machine learning (in Spanish)",
+      title: "Corrección de modelos digitales de elevación radar con imágenes Landsat mediante aprendizaje automático (in Spanish)",
       venue: "Congreso Argentino de Agroinformática (CAI)", doi: "" },
 
     { key: "spie2017rf", type: "conference", year: 2017,
@@ -281,46 +285,46 @@ window.SITE = {
   teaching_courses: [
     {
       key: "qsw2026", role: "Guest lecturer", year: "2026",
-      title: "Cellpose Lab", topics: "Cellpose, observer variability", university: "UCalgary"
+      title: "QSW 2026: Cellpose Lab", topics: "Cellpose, observer variability", university: "UCalgary"
     },
     {
       key: "mdsc68911", role: "Guest lecturer", year: "2023,2024",
-      title: "Medical Imaging Applications", topics: "Image registration, Machine Learning", university: "UCalgary"
+      title: "Medical Imaging Applications", topics: "Image registration, machine learning", university: "UCalgary"
     },
     {
       key: "improcess", role: "Instructor", year: "2022",
       title: "Workshop: Introduction to Image Processing using Open-Source Software",
-      topics: "Filtering. Segmentation. 3DSlicer, Paraview, ITK, Python", university: "UCalgary"
+      topics: "Filtering, segmentation, 3D Slicer, ParaView, ITK, Python", university: "UCalgary"
     },
     {
       key: "custodios", role: "Instructor", year: "2018",
       title: "Technological Applications for Conservation",
-      topics: "GPS, Geographic Information Systems, Image Processing", university: "UNCPBA"
+      topics: "GPS, geographic information systems, image processing", university: "UNCPBA"
     },
     {
       key: "tim", role: "Teaching Assistant", year: "2014, 2015, 2017",
-      title: "Medical Imaging workshop",
+      title: "Medical Imaging Workshop",
       topics: "Filtering, segmentation, quantification and registration of medical images", university: "UNCPBA"
     },
     {
       key: "metodologias", role: "Teaching Assistant", year: "2009-2018",
       title: "Software Development Methodologies I",
-      topics: "UML, UP, Agile software development. IBM Professional Qualification RT011", university: "UNCPBA"
+      topics: "UML, UP, agile software development, IBM Professional Qualification RT011", university: "UNCPBA"
     },
     {
       key: "tio", role: "Teaching Assistant", year: "2016-2018",
       title: "Information Technologies for Organizations",
-      topics: "Fundamentals of organizations, Business requirements, Git, CMMI", university: "UNCPBA"
+      topics: "Fundamentals of organizations, business requirements, Git, CMMI", university: "UNCPBA"
     },
     {
       key: "compiladores", role: "Teaching Assistant", year: "2011-2019",
       title: "Design of Compilers I",
-      topics: "Symbols tables, lexical and syntactic analysis, YACC, Assembly language", university: "UNCPBA"
+      topics: "Symbol tables, lexical and syntactic analysis, YACC, assembly language", university: "UNCPBA"
     },
     {
       key: "estructuras-tupar", role: "Teaching Assistant", year: "2011",
       title: "Data Storage Structures",
-      topics: "Data modeling (Entity-Relationship Diagrams, Normal Forms, Business Requirements) and data structures in secondary storage",
+      topics: "Data modeling (entity-relationship diagrams, normal forms, business requirements) and data structures in secondary storage",
       university: "UNCPBA"
     },
   ]
